@@ -38,8 +38,6 @@
             this.x8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.x64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.x128ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comparisonImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,7 +105,7 @@
             this.randomMatrixToolStripMenuItem,
             this.comparisonImageToolStripMenuItem});
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.loadToolStripMenuItem1.Text = "Load";
             this.loadToolStripMenuItem1.Click += new System.EventHandler(this.loadToolStripMenuItem1_Click);
             // 
@@ -131,9 +129,7 @@
             this.x4ToolStripMenuItem,
             this.x8ToolStripMenuItem,
             this.x16ToolStripMenuItem,
-            this.x32ToolStripMenuItem,
-            this.x64ToolStripMenuItem,
-            this.x128ToolStripMenuItem});
+            this.x32ToolStripMenuItem});
             this.randomMatrixToolStripMenuItem.Name = "randomMatrixToolStripMenuItem";
             this.randomMatrixToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.randomMatrixToolStripMenuItem.Text = "Random matrix";
@@ -166,20 +162,6 @@
             this.x32ToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.x32ToolStripMenuItem.Text = "32x32";
             this.x32ToolStripMenuItem.Click += new System.EventHandler(this.x32ToolStripMenuItem_Click);
-            // 
-            // x64ToolStripMenuItem
-            // 
-            this.x64ToolStripMenuItem.Name = "x64ToolStripMenuItem";
-            this.x64ToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.x64ToolStripMenuItem.Text = "64x64";
-            this.x64ToolStripMenuItem.Click += new System.EventHandler(this.x64ToolStripMenuItem_Click);
-            // 
-            // x128ToolStripMenuItem
-            // 
-            this.x128ToolStripMenuItem.Name = "x128ToolStripMenuItem";
-            this.x128ToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.x128ToolStripMenuItem.Text = "128x128";
-            this.x128ToolStripMenuItem.Click += new System.EventHandler(this.x128ToolStripMenuItem_Click);
             // 
             // comparisonImageToolStripMenuItem
             // 
@@ -332,6 +314,7 @@
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
             this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem1.Text = "Save";
+            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click_2);
             // 
             // asMatrixTextFileToolStripMenuItem
             // 
@@ -463,8 +446,6 @@
         private System.Windows.Forms.ToolStripMenuItem x8ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x16ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x32ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem x64ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem x128ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromMatrixToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromPreorderFormatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem randomToolStripMenuItem;

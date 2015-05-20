@@ -283,7 +283,7 @@ namespace KTFormApp
 
         private void drawImageHighlight(ref int[,] map, int[] regions)
         {
-            //drawImageHelper(ref map, regions, panel1Graphics);
+            drawImageHelper(ref map, regions, panel1Graphics);
         }
 
         private void drawImageHelper(ref int[,] map, int[] regions, Graphics gp)
@@ -1001,27 +1001,32 @@ namespace KTFormApp
             Node walker = n;
             while (walker!=null && !walker.isRoot)
             {
-                switch (walker.getDirectionString())
+                if (walker.getDirectionString() == "left")
                 {
-                    case "NW":
-                        break;
-                    case "SW":
-                        region[1] += walker.numRows;
-                        break;
-                    case "SE":
+                    if (walker.level % 2 == 0)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    if (walker.level % 2 == 0)
+                    {
+
+
+                    }
+                    else
+                    {
                         region[0] += walker.numCols;
-                        region[1] += walker.numRows;
-                        break;
-                    case "NE":
-                        region[0] += walker.numCols;
-                        break;
-                    default: //walker is root?
-                        break;
-                }//switch
+
+                    }
+                }
                 walker = walker.parent;
             }//while
-            region[2] += n.numCols;
-            region[3] += n.numRows;
             return region;
         }
 
@@ -1121,31 +1126,24 @@ namespace KTFormApp
 
         private int stringToTreeHelper(ref String[] str, int start, Node n, String direction)
         {
-            //String[] directions = { "NW", "SW", "SE", "NE" };
-            //int nodeNum = 0;
             int end = start;
 
                 if (end >= str.Length)
                 {
                     return 0;
                 }
-                //MessageBox.Show("Size of str: " + str.Length + ", end: " + end + ", nodeNum: " + nodeNum);
-                //MessageBox.Show("Number " + str[end] + " point in string: " + end + " current node direction: " + direction);
                 if (str[end] == "1")
                 {
-                    //MessageBox.Show(direction + " should be black");
                     n.setColor(Color.Black);
                     end++;
                 }
                 else if (str[end] == "0")
                 {
-                    //MessageBox.Show(direction + " should be white");
                     n.setColor(Color.White);
                     end++;
                 }
                 else if (str[end] == "2")
                 {
-                    //MessageBox.Show(direction + " should be gray");
                     n.setColor(Color.Gray);
                     Node left = n.addChild(true);
                     nodes[currentPosition] = left;
@@ -1194,14 +1192,12 @@ namespace KTFormApp
                 {
                     for (int c = cStart; c < cStart + n.numCols; c++)
                     {
-                        //MessageBox.Show("rStart="+rStart+", cStart="+cStart+", r=" + r + ", c=" + c+" fill: "+fill);
                         map[r, c] = fill;
                     }
                 }
             }
             else
             {
-                //MessageBox.Show(n.toString()); //("Null? NW: " + (n.NW == null) + "  SW: " + (n.SW == null) + "  SE: " + (n.SE == null) + "  NE: " + (n.NE == null));
                 treeToImage(n.left, rStart, cStart,ref map);
                 treeToImage(n.right, rStart + (n.numRows/2), cStart,ref map); 
             }
@@ -1492,7 +1488,7 @@ namespace KTFormApp
             {
                 for (int c = 0; c < numCols; c++)
                 {
-                    int num = rnd.Next(0, 9);
+                    int num = rnd.Next(0, 12);
                     if (r > 1 && c > 1)
                     {
                         if (num == 2)
@@ -1523,7 +1519,7 @@ namespace KTFormApp
                             num = rnd.Next(0, 2);
                             map1[r - 1, c - 1] = num;
                         }
-                        else if (num == 5)
+                        else if (num == 5 || num > 8)
                         {
                             num = 1;
                         }
@@ -1734,6 +1730,7 @@ namespace KTFormApp
             {
                 fileName = oFD.FileName;
             }
+            clearAllNodes();
             //displayToolStripMenuItem_Click(sender, e);
             //parseMatrixInputFile(ref map1);
             parsePreorderInputFile(ref map1);
@@ -1844,6 +1841,11 @@ namespace KTFormApp
         {
             p2color = Color.Green;
             panel2Graphics.Clear(p2color);
+        }
+
+        private void saveToolStripMenuItem1_Click_2(object sender, EventArgs e)
+        {
+
         }
 
 
