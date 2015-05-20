@@ -19,8 +19,8 @@ namespace KTFormApp
         private int prevClicked;
         private int beforeLastClicked;
         private string fileName; 
-        private static int nodeWidth = 20;
-        private static int nodeHeight = 20;
+        private static int nodeWidth = 40;
+        private static int nodeHeight = 40;
         private System.Drawing.Graphics panel1Graphics;
         private System.Drawing.Graphics panel2Graphics;
         private System.Drawing.Graphics formGraphic;
@@ -439,7 +439,7 @@ namespace KTFormApp
                 this.Close();
                 returnRoot = null;
             }
-            else if (rowStop - rowStart == 0)
+            else if (rowStop - rowStart == 0 && colStart == colStop)
             {
                 n.hasChildren = false;
                 if (m[rowStart, colStart] == 1)
@@ -618,22 +618,45 @@ namespace KTFormApp
             }
             else
             {
-                LinearGradientBrush lgb = new LinearGradientBrush(
+                if (n.level % 2 == 0)
+                {
+                    LinearGradientBrush lgb = new LinearGradientBrush(
+                    clicked,
+                    new Point(clicked.X, clicked.Y+nodeHeight),
+                    Color.FromArgb(255, 255, 255),
+                    Color.FromArgb(0, 0, 0));
+                    float[] intensities = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+                    float[] posit = { 0.0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
+                    Blend blend = new Blend();
+                    blend.Factors = intensities;
+                    blend.Positions = posit;
+                    lgb.Blend = blend;
+                    panel2Graphics.FillEllipse(lgb, new Rectangle(n.getPoint(), new Size(nodeWidth, nodeHeight)));
+                    using (Graphics bmpGraphicForQT = Graphics.FromImage(bmpToSaveForQT))
+                    {
+                        bmpGraphicForQT.FillEllipse(lgb, new Rectangle(centerPoint, new Size(nodeWidth, nodeHeight)));
+                    }
+                }
+                else
+                {
+                    LinearGradientBrush lgb = new LinearGradientBrush(
                     clicked,
                     new Point(clicked.X + nodeWidth, clicked.Y),
                     Color.FromArgb(255, 255, 255),
                     Color.FromArgb(0, 0, 0));
-                float[] intensities = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
-                float[] posit = { 0.0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
-                Blend blend = new Blend();
-                blend.Factors = intensities;
-                blend.Positions = posit;
-                lgb.Blend = blend;
-                panel2Graphics.FillEllipse(lgb, new Rectangle(n.getPoint(), new Size(nodeWidth, nodeHeight)));
-                using (Graphics bmpGraphicForQT = Graphics.FromImage(bmpToSaveForQT))
-                {
-                    bmpGraphicForQT.FillEllipse(lgb, new Rectangle(centerPoint, new Size(nodeWidth, nodeHeight)));
+                    float[] intensities = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+                    float[] posit = { 0.0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
+                    Blend blend = new Blend();
+                    blend.Factors = intensities;
+                    blend.Positions = posit;
+                    lgb.Blend = blend;
+                    panel2Graphics.FillEllipse(lgb, new Rectangle(n.getPoint(), new Size(nodeWidth, nodeHeight)));
+                    using (Graphics bmpGraphicForQT = Graphics.FromImage(bmpToSaveForQT))
+                    {
+                        bmpGraphicForQT.FillEllipse(lgb, new Rectangle(centerPoint, new Size(nodeWidth, nodeHeight)));
+                    }
                 }
+                
             }
 
         }
